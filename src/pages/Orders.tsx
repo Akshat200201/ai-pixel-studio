@@ -36,6 +36,21 @@ const getStatusVariant = (status: string) => {
 const Orders = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  
+  const itemsPerPage = 5;
+  const totalPages = Math.ceil(ordersData.length / itemsPerPage);
+  
+  // Filter orders based on search term
+  const filteredOrders = ordersData.filter(order =>
+    order.user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    order.project.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    order.id.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  
+  // Get current page orders
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentOrders = filteredOrders.slice(startIndex, endIndex);
 
   return (
     <div className="p-6 space-y-6">
@@ -87,7 +102,7 @@ const Orders = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {ordersData.map((order, index) => (
+            {currentOrders.map((order, index) => (
               <TableRow key={order.id} className="hover:bg-card-hover">
                 <TableCell>
                   <Checkbox />
@@ -135,7 +150,7 @@ const Orders = () => {
                 }}
               />
             </PaginationItem>
-            {[1, 2, 3, 4, 5].map((page) => (
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <PaginationItem key={page}>
                 <PaginationLink 
                   href="#" 
@@ -154,7 +169,7 @@ const Orders = () => {
                 href="#" 
                 onClick={(e) => {
                   e.preventDefault();
-                  if (currentPage < 5) setCurrentPage(currentPage + 1);
+                  if (currentPage < totalPages) setCurrentPage(currentPage + 1);
                 }}
               />
             </PaginationItem>

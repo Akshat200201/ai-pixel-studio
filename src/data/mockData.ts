@@ -105,6 +105,126 @@ export const ordersData = [
     address: 'Nest Lane Olivette',
     date: 'Feb 2, 2023',
     status: 'Rejected'
+  },
+  {
+    id: '#CM9806',
+    user: { name: 'Sarah Johnson', avatar: 'SJ' },
+    project: 'E-commerce Site',
+    address: 'Pine Street Denver',
+    date: 'Feb 1, 2023',
+    status: 'In Progress'
+  },
+  {
+    id: '#CM9807',
+    user: { name: 'Mike Chen', avatar: 'MC' },
+    project: 'Mobile App',
+    address: 'Oak Avenue Chicago',
+    date: 'Jan 30, 2023',
+    status: 'Complete'
+  },
+  {
+    id: '#CM9808',
+    user: { name: 'Emily Davis', avatar: 'ED' },
+    project: 'Portfolio Website',
+    address: 'Elm Street Boston',
+    date: 'Jan 29, 2023',
+    status: 'Pending'
+  },
+  {
+    id: '#CM9809',
+    user: { name: 'Alex Wilson', avatar: 'AW' },
+    project: 'Blog Platform',
+    address: 'Maple Road Seattle',
+    date: 'Jan 28, 2023',
+    status: 'Approved'
+  },
+  {
+    id: '#CM9810',
+    user: { name: 'Lisa Brown', avatar: 'LB' },
+    project: 'Dashboard Design',
+    address: 'Cedar Lane Miami',
+    date: 'Jan 27, 2023',
+    status: 'In Progress'
+  },
+  {
+    id: '#CM9811',
+    user: { name: 'Tom Anderson', avatar: 'TA' },
+    project: 'API Integration',
+    address: 'Birch Street Portland',
+    date: 'Jan 26, 2023',
+    status: 'Complete'
+  },
+  {
+    id: '#CM9812',
+    user: { name: 'Rachel Green', avatar: 'RG' },
+    project: 'Social Media App',
+    address: 'Willow Drive Austin',
+    date: 'Jan 25, 2023',
+    status: 'Rejected'
+  },
+  {
+    id: '#CM9813',
+    user: { name: 'James Miller', avatar: 'JM' },
+    project: 'Learning Platform',
+    address: 'Spruce Court Phoenix',
+    date: 'Jan 24, 2023',
+    status: 'Pending'
+  },
+  {
+    id: '#CM9814',
+    user: { name: 'Maria Garcia', avatar: 'MG' },
+    project: 'Restaurant Website',
+    address: 'Poplar Street Las Vegas',
+    date: 'Jan 23, 2023',
+    status: 'Approved'
+  },
+  {
+    id: '#CM9815',
+    user: { name: 'David Lee', avatar: 'DL' },
+    project: 'Fitness App',
+    address: 'Hickory Lane Detroit',
+    date: 'Jan 22, 2023',
+    status: 'In Progress'
+  },
+  {
+    id: '#CM9816',
+    user: { name: 'Anna Taylor', avatar: 'AT' },
+    project: 'Event Platform',
+    address: 'Chestnut Road Nashville',
+    date: 'Jan 21, 2023',
+    status: 'Complete'
+  },
+  {
+    id: '#CM9817',
+    user: { name: 'Kevin White', avatar: 'KW' },
+    project: 'Travel Booking',
+    address: 'Walnut Avenue Baltimore',
+    date: 'Jan 20, 2023',
+    status: 'Pending'
+  },
+  {
+    id: '#CM9818',
+    user: { name: 'Sophie Clark', avatar: 'SC' },
+    project: 'News Portal',
+    address: 'Cherry Street Memphis',
+    date: 'Jan 19, 2023',
+    status: 'Rejected'
+  },
+  {
+    id: '#CM9819',
+    user: { name: 'Ryan Martinez', avatar: 'RM' },
+    project: 'Gaming Website',
+    address: 'Peach Lane Milwaukee',
+    date: 'Jan 18, 2023',
+    status: 'Approved'
+  },
+  {
+    id: '#CM9820',
+    user: { name: 'Jessica Adams', avatar: 'JA' },
+    project: 'Real Estate App',
+    address: 'Apple Court Columbus',
+    date: 'Jan 17, 2023',
+    status: 'In Progress'
   }
 ];
 
