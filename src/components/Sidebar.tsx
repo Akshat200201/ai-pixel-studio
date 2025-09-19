@@ -1,46 +1,99 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { 
-  LayoutDashboard, 
-  ShoppingCart, 
-  FolderOpen, 
-  GraduationCap,
-  User,
-  Settings,
-  FileText,
+  Home,
+  Calendar,
   Users,
-  BarChart3,
-  MessageSquare,
-  Archive,
-  Star,
-  Clock,
+  Settings,
+  ChevronDown,
+  ChevronRight,
+  Sun,
   Moon,
-  Sun
+  User,
+  Briefcase,
+  BookOpen,
+  MessageSquare,
+  Building2,
+  FileText,
+  Globe
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { useTheme } from "@/contexts/ThemeContext";
 import { cn } from "@/lib/utils";
 
+// Define navigation items
 const sidebarItems = [
-  { title: "Overview", icon: LayoutDashboard, url: "/" },
-  { title: "Projects", icon: FolderOpen, url: "/projects" },
+  {
+    name: "Overview",
+    href: "/",
+    icon: Home,
+  },
+  {
+    name: "Projects", 
+    href: "/projects",
+    icon: Calendar,
+  },
 ];
 
 const dashboardItems = [
-  { title: "Default", icon: LayoutDashboard, url: "/", active: true },
-  { title: "eCommerce", icon: ShoppingCart, url: "/ecommerce" },
-  { title: "Projects", icon: FolderOpen, url: "/projects" },
-  { title: "Online Courses", icon: GraduationCap, url: "/courses" },
+  {
+    name: "Default",
+    href: "/",
+    icon: Settings,
+  },
+  {
+    name: "eCommerce", 
+    href: "/ecommerce",
+    icon: Briefcase,
+  },
+  {
+    name: "Projects",
+    href: "/projects", 
+    icon: Calendar,
+  },
+  {
+    name: "Online Courses",
+    href: "/courses",
+    icon: BookOpen,
+  },
+];
+
+const userProfileSubItems = [
+  { name: "Overview", href: "/user-profile/overview" },
+  { name: "Projects", href: "/user-profile/projects" },
+  { name: "Campaigns", href: "/user-profile/campaigns" },
+  { name: "Documents", href: "/user-profile/documents" },
+  { name: "Followers", href: "/user-profile/followers" },
 ];
 
 const pageItems = [
-  { title: "Orders", icon: ShoppingCart, url: "/orders" },
-  { title: "User Profile", icon: User, url: "/profile" },
-  { title: "Account", icon: Settings, url: "/account" },
-  { title: "Corporate", icon: BarChart3, url: "/corporate" },
-  { title: "Blog", icon: FileText, url: "/blog" },
-  { title: "Social", icon: MessageSquare, url: "/social" },
+  {
+    name: "User Profile",
+    href: "/user-profile",
+    icon: User,
+    hasSubItems: true,
+    subItems: userProfileSubItems,
+  },
+  {
+    name: "Account",
+    href: "/account", 
+    icon: Settings,
+  },
+  {
+    name: "Corporate",
+    href: "/corporate",
+    icon: Building2,
+  },
+  {
+    name: "Blog",
+    href: "/blog",
+    icon: FileText,
+  },
+  {
+    name: "Social",
+    href: "/social",
+    icon: Globe,
+  },
 ];
 
 interface SidebarProps {
@@ -50,7 +103,17 @@ interface SidebarProps {
 
 export const Sidebar = ({ collapsed, onToggle }: SidebarProps) => {
   const { theme, toggleTheme } = useTheme();
-  
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
+    userProfile: false,
+  });
+
+  const toggleSection = (section: string) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
+
   return (
     <div className={cn(
       "h-screen bg-sidebar border-r border-sidebar-border transition-all duration-300 flex flex-col",
@@ -71,16 +134,54 @@ export const Sidebar = ({ collapsed, onToggle }: SidebarProps) => {
       {/* Navigation */}
       <div className="flex-1 overflow-y-auto p-4 space-y-6">
         {/* Favorites */}
-        <div>
-          <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground mb-2">
-            <Star className="w-3 h-3" />
-            {!collapsed && "Favorites"}
+        {!collapsed && (
+          <div>
+            <h3 className="text-xs font-medium text-muted-foreground mb-2">
+              Favorites
+            </h3>
+            <nav className="space-y-1">
+              {sidebarItems.map((item) => (
+                <NavLink
+                  key={item.href}
+                  to={item.href}
+                  className={({ isActive }) =>
+                    cn(
+                      "flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                      isActive
+                        ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                        : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                    )
+                  }
+                >
+                  <item.icon className="w-4 h-4" />
+                  {item.name}
+                </NavLink>
+              ))}
+            </nav>
           </div>
+        )}
+
+        {/* Recently */}
+        {!collapsed && (
+          <div>
+            <div className="text-xs font-medium text-muted-foreground mb-2">
+              Recently
+            </div>
+          </div>
+        )}
+
+        {/* Dashboards */}
+        <div>
+          {!collapsed && (
+            <h3 className="text-xs font-medium text-muted-foreground mb-2">
+              Dashboards
+            </h3>
+          )}
           <nav className="space-y-1">
-            {sidebarItems.map((item) => (
+            {dashboardItems.map((item) => (
               <NavLink
-                key={item.url}
-                to={item.url}
+                key={item.href}
+                to={item.href}
                 className={({ isActive }) =>
                   cn(
                     "flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
@@ -91,71 +192,79 @@ export const Sidebar = ({ collapsed, onToggle }: SidebarProps) => {
                 }
               >
                 <item.icon className="w-4 h-4" />
-                {!collapsed && item.title}
-              </NavLink>
-            ))}
-          </nav>
-        </div>
-
-        {/* Recently */}
-        <div>
-          <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground mb-2">
-            <Clock className="w-3 h-3" />
-            {!collapsed && "Recently"}
-          </div>
-        </div>
-
-        {/* Dashboards */}
-        <div>
-          <h3 className="text-xs font-medium text-muted-foreground mb-2">
-            {!collapsed && "Dashboards"}
-          </h3>
-          <nav className="space-y-1">
-            {dashboardItems.map((item) => (
-              <NavLink
-                key={item.url}
-                to={item.url}
-                className={({ isActive }) =>
-                  cn(
-                    "flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
-                    isActive || item.active
-                      ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                      : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-                  )
-                }
-              >
-                <item.icon className="w-4 h-4" />
-                {!collapsed && item.title}
+                {!collapsed && item.name}
               </NavLink>
             ))}
           </nav>
         </div>
 
         {/* Pages */}
-        <div>
-          <h3 className="text-xs font-medium text-muted-foreground mb-2">
-            {!collapsed && "Pages"}
-          </h3>
-          <nav className="space-y-1">
-            {pageItems.map((item) => (
-              <NavLink
-                key={item.url}
-                to={item.url}
-                className={({ isActive }) =>
-                  cn(
-                    "flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
-                    isActive
-                      ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                      : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-                  )
-                }
-              >
-                <item.icon className="w-4 h-4" />
-                {!collapsed && item.title}
-              </NavLink>
-            ))}
-          </nav>
-        </div>
+        {!collapsed && (
+          <div>
+            <h3 className="text-xs font-medium text-muted-foreground mb-2">
+              Pages
+            </h3>
+            <nav className="space-y-1">
+              {pageItems.map((item) => (
+                <div key={item.name}>
+                  {item.hasSubItems ? (
+                    <>
+                      <button
+                        onClick={() => toggleSection('userProfile')}
+                        className="flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm font-medium text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors"
+                      >
+                        <div className="flex items-center gap-2">
+                          <item.icon className="w-4 h-4" />
+                          {item.name}
+                        </div>
+                        {expandedSections.userProfile ? (
+                          <ChevronDown className="w-4 h-4" />
+                        ) : (
+                          <ChevronRight className="w-4 h-4" />
+                        )}
+                      </button>
+                      {expandedSections.userProfile && item.subItems && (
+                        <div className="ml-6 mt-1 space-y-1">
+                          {item.subItems.map((subItem) => (
+                            <NavLink
+                              key={subItem.name}
+                              to={subItem.href}
+                              className={({ isActive }) =>
+                                cn(
+                                  "block px-3 py-2 rounded-lg text-sm transition-colors",
+                                  isActive
+                                    ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
+                                    : "text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                                )
+                              }
+                            >
+                              {subItem.name}
+                            </NavLink>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <NavLink
+                      to={item.href}
+                      className={({ isActive }) =>
+                        cn(
+                          "flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                          isActive
+                            ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                            : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                        )
+                      }
+                    >
+                      <item.icon className="w-4 h-4" />
+                      {item.name}
+                    </NavLink>
+                  )}
+                </div>
+              ))}
+            </nav>
+          </div>
+        )}
       </div>
 
       {/* Footer */}

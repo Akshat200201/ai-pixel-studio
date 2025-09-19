@@ -11,9 +11,17 @@ interface StatCardProps {
 }
 
 export const StatCard = ({ title, value, change, isPositive, className }: StatCardProps) => {
+  const getCardStyle = (title: string) => {
+    if (title === "Customers" || title === "Orders") {
+      return "bg-blue-50 dark:bg-blue-950/20 border-blue-100 dark:border-blue-900";
+    }
+    return "";
+  };
+
   return (
     <Card className={cn(
       "p-6 animate-fade-in hover:shadow-md transition-all duration-300",
+      getCardStyle(title),
       className
     )}>
       <div className="space-y-3">
