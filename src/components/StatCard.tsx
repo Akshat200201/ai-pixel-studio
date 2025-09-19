@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { TrendingUp, TrendingDown } from "lucide-react";
+import { TrendingUp, TrendingDown, Users, ShoppingCart, DollarSign, TrendingUp as Growth } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface StatCardProps {
@@ -11,34 +11,48 @@ interface StatCardProps {
 }
 
 export const StatCard = ({ title, value, change, isPositive, className }: StatCardProps) => {
-  const getCardStyle = (title: string) => {
-    if (title === "Customers" || title === "Orders") {
-      return "bg-blue-50 dark:bg-blue-950/20 border-blue-100 dark:border-blue-900";
+  const getIcon = (title: string) => {
+    switch (title) {
+      case "Customers":
+        return Users;
+      case "Orders":
+        return ShoppingCart;
+      case "Revenue":
+        return DollarSign;
+      case "Growth":
+        return Growth;
+      default:
+        return Users;
     }
-    return "";
   };
+
+  const Icon = getIcon(title);
 
   return (
     <Card className={cn(
-      "p-6 animate-fade-in hover:shadow-md transition-all duration-300",
-      getCardStyle(title),
+      "p-6 animate-fade-in hover:shadow-md transition-all duration-300 group",
       className
     )}>
-      <div className="space-y-3">
-        <h3 className="text-sm font-medium text-muted-foreground">{title}</h3>
-        <div className="flex items-center justify-between">
-          <div className="text-2xl font-bold text-card-foreground">{value}</div>
+      <div className="flex items-start justify-between">
+        <div className="space-y-2">
+          <p className="text-sm font-medium text-muted-foreground">{title}</p>
+          <div className="flex items-center gap-2">
+            <h3 className="text-2xl font-bold text-card-foreground">{value}</h3>
+          </div>
           <div className={cn(
-            "flex items-center gap-1 text-sm font-medium",
+            "flex items-center gap-1 text-xs font-medium",
             isPositive ? "text-success" : "text-error"
           )}>
             {isPositive ? (
-              <TrendingUp className="h-4 w-4" />
+              <TrendingUp className="h-3 w-3" />
             ) : (
-              <TrendingDown className="h-4 w-4" />
+              <TrendingDown className="h-3 w-3" />
             )}
             {change}
           </div>
+        </div>
+        <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+          <Icon className="h-5 w-5 text-primary" />
         </div>
       </div>
     </Card>

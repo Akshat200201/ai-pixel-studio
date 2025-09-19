@@ -1,6 +1,8 @@
-import { Search, Bell, Menu, Maximize2, RotateCcw } from "lucide-react";
+import { Search, Bell, Menu, Maximize2, RotateCcw, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useTheme } from "@/contexts/ThemeContext";
 import { cn } from "@/lib/utils";
 
 interface HeaderProps {
@@ -10,6 +12,8 @@ interface HeaderProps {
 }
 
 export const Header = ({ onToggleSidebar, title, className }: HeaderProps) => {
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <header className={cn(
       "h-14 border-b border-border bg-background flex items-center px-4 gap-4",
@@ -47,9 +51,18 @@ export const Header = ({ onToggleSidebar, title, className }: HeaderProps) => {
           <Bell className="w-4 h-4" />
         </Button>
 
+        <Button variant="ghost" size="sm" onClick={toggleTheme}>
+          {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+        </Button>
+
         <Button variant="ghost" size="sm">
           <Maximize2 className="w-4 h-4" />
         </Button>
+
+        <Avatar className="w-8 h-8">
+          <AvatarImage src="/api/placeholder/32/32" />
+          <AvatarFallback>JD</AvatarFallback>
+        </Avatar>
       </div>
     </header>
   );

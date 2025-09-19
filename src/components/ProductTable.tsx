@@ -4,9 +4,9 @@ import { topProducts } from '@/data/mockData';
 
 export const ProductTable = () => {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-lg font-semibold">Top Selling Products</CardTitle>
+    <Card className="animate-fade-in">
+      <CardHeader className="pb-3">
+        <CardTitle className="text-base font-medium">Top Selling Products</CardTitle>
       </CardHeader>
       <CardContent>
         <Table>

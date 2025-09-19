@@ -1,7 +1,10 @@
 import { StatCard } from "@/components/StatCard";
-import { RevenueChart, ProjectionsChart, TotalSalesChart } from "@/components/Charts";
+import { RevenueChart, ProjectionsChart, TotalSalesChart } from "@/components/Charts"; 
 import { ProductTable } from "@/components/ProductTable";
 import { RevenueByLocationCard } from "@/components/RevenueByLocation";
+import { Activities } from "@/components/Activities";
+import { ContactsList } from "@/components/ContactsList";
+import { SalesBreakdown } from "@/components/SalesBreakdown";
 import { statsData } from '@/data/mockData';
 
 const Dashboard = () => {
@@ -45,17 +48,23 @@ const Dashboard = () => {
         <div className="lg:col-span-2">
           <RevenueChart />
         </div>
-        <ProjectionsChart />
+        <div className="lg:col-span-1">
+          <ProjectionsChart />
+        </div>
       </div>
 
       {/* Bottom Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         <div className="lg:col-span-2">
           <ProductTable />
         </div>
         <div className="lg:col-span-1 space-y-6">
-          <RevenueByLocationCard />
+          <SalesBreakdown />
           <TotalSalesChart />
+        </div>
+        <div className="lg:col-span-1 space-y-6">
+          <Activities />
+          <ContactsList />
         </div>
       </div>
     </div>
