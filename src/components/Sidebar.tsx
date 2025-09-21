@@ -42,6 +42,11 @@ const dashboardItems = [
     icon: Settings,
   },
   {
+    name: "Orders",
+    href: "/orders",
+    icon: Users,
+  },
+  {
     name: "eCommerce", 
     href: "/ecommerce",
     icon: Briefcase,
