@@ -39,15 +39,14 @@ This project is built with:
 
 ### 1. Clone the Repository
 ```sh
-git clone <YOUR_GIT_URL>
-cd <YOUR_PROJECT_NAME>
+git clone
+```
 2. Install Dependencies
-sh
-Copy code
+```sh
 npm install
+```
 3. Run the Development Server
-sh
-Copy code
+```sh
 npm run dev
 ```
 🌍 Deployment
