@@ -22,12 +22,14 @@ const Dashboard = () => {
           value={statsData.customers.value}
           change={statsData.customers.change}
           isPositive={statsData.customers.isPositive}
+          highlighted={true}
         />
         <StatCard
           title="Orders"
           value={statsData.orders.value}
           change={statsData.orders.change}
           isPositive={statsData.orders.isPositive}
+          highlighted={true}
         />
         <StatCard
           title="Revenue"

@@ -10,16 +10,17 @@ export const RevenueChart = () => {
         <div className="flex items-center justify-between">
           <CardTitle className="text-base font-medium">Revenue</CardTitle>
           <div className="flex items-center gap-4 text-sm">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-chart-1" />
-              <span className="text-muted-foreground">Current Week</span>
-              <span className="font-semibold">$58,211</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-chart-2" />
-              <span className="text-muted-foreground">Previous Week</span>
-              <span className="font-semibold">$68,768</span>
-            </div>
+        {/* Current Week */}
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#3B82F6' }} />
+          <span className="text-muted-foreground">Current Week</span>
+          <span className="font-semibold">$58,211</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-muted-foreground" />
+          <span className="text-muted-foreground">Previous Week</span>
+          <span className="font-semibold">$68,768</span>
+        </div>
           </div>
         </div>
       </CardHeader>
@@ -41,19 +42,19 @@ export const RevenueChart = () => {
             <Line 
               type="monotone" 
               dataKey="current" 
-              stroke="hsl(var(--chart-1))" 
+              stroke="#3B82F6" 
               strokeWidth={3}
               dot={false}
-              activeDot={{ r: 6, stroke: "hsl(var(--chart-1))", strokeWidth: 2 }}
+              activeDot={{ r: 6, stroke: "#3B82F6", strokeWidth: 2 }}
             />
             <Line 
               type="monotone" 
               dataKey="previous" 
-              stroke="hsl(var(--chart-2))" 
+              stroke="hsl(var(--muted-foreground))" 
               strokeWidth={3}
               strokeDasharray="5 5"
               dot={false}
-              activeDot={{ r: 6, stroke: "hsl(var(--chart-2))", strokeWidth: 2 }}
+              activeDot={{ r: 6, stroke: "hsl(var(--muted-foreground))", strokeWidth: 2 }}
             />
           </LineChart>
         </ResponsiveContainer>
@@ -86,7 +87,7 @@ export const ProjectionsChart = () => {
             />
             <Bar 
               dataKey="value" 
-              fill="hsl(var(--chart-1))" 
+              fill="#3B82F6" 
               radius={[4, 4, 0, 0]}
               className="hover:opacity-80 transition-opacity"
             />
