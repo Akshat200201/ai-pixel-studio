@@ -6,13 +6,28 @@ import { Activities } from "@/components/Activities";
 import { ContactsList } from "@/components/ContactsList";
 import { SalesBreakdown } from "@/components/SalesBreakdown";
 import { statsData } from '@/data/mockData';
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="p-6 space-y-6">
       {/* Page Title */}
-      <div>
+      <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-foreground">eCommerce</h1>
+        <div className="flex flex-col gap-2">
+          <Button variant="default">
+            Default
+          </Button>
+          <Button 
+            variant="secondary" 
+            onClick={() => navigate('/orders')}
+          >
+            Orders
+          </Button>
+        </div>
       </div>
 
       {/* Stats Cards */}
