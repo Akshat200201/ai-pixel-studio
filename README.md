@@ -2,7 +2,8 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/557373dc-56d5-4c9d-bde1-b1f9c45d85e2
+**URL**: https://ai-pixel-studio.lovable.app
+**EDIT**: https://lovable.dev/projects/557373dc-56d5-4c9d-bde1-b1f9c45d85e2
 
 ## How can I edit this code?
 
