@@ -49,14 +49,10 @@ npm install
 sh
 Copy code
 npm run dev
-
+```
 🌍 Deployment
 This project was deployed using Lovable.
 To deploy yourself:
-
-Open Lovable Project
-
-Click on Share → Publish
 
 📝 Approach
 Followed component-driven development for modularity and clean code structure
