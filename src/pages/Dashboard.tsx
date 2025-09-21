@@ -92,35 +92,51 @@ const Dashboard = () => {
         <h1 className="text-2xl font-bold text-foreground">eCommerce</h1>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatCard
-          title="Customers"
-          value={statsData.customers.value}
-          change={statsData.customers.change}
-          isPositive={statsData.customers.isPositive}
-          highlighted={true}
-        />
-        <StatCard
-          title="Orders"
-          value={statsData.orders.value}
-          change={statsData.orders.change}
-          isPositive={statsData.orders.isPositive}
-          highlighted={true}
-        />
-        <StatCard
-          title="Revenue"
-          value={statsData.revenue.value}
-          change={statsData.revenue.change}
-          isPositive={statsData.revenue.isPositive}
-        />
-        <StatCard
-          title="Growth"
-          value={statsData.growth.value}
-          change={statsData.growth.change}
-          isPositive={statsData.growth.isPositive}
-        />
-      </div>
+     {/* ✅ Stats Cards */}
+<div 
+  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6"
+  // ⬅️ CHANGED: lg:grid-cols-4 → lg:grid-cols-2 (forces two per row)
+>
+  <div className="col-span-1">
+    {/* ⬅️ NEW WRAPPER so each card respects the grid */}
+    <StatCard
+      title="Customers"
+      value={statsData.customers.value}
+      change={statsData.customers.change}
+      isPositive={statsData.customers.isPositive}
+      highlighted={true}
+    />
+  </div>
+
+  <div className="col-span-1">
+    <StatCard
+      title="Orders"
+      value={statsData.orders.value}
+      change={statsData.orders.change}
+      isPositive={statsData.orders.isPositive}
+      highlighted={true}
+    />
+  </div>
+
+  <div className="col-span-1">
+    <StatCard
+      title="Revenue"
+      value={statsData.revenue.value}
+      change={statsData.revenue.change}
+      isPositive={statsData.revenue.isPositive}
+    />
+  </div>
+
+  <div className="col-span-1">
+    <StatCard
+      title="Growth"
+      value={statsData.growth.value}
+      change={statsData.growth.change}
+      isPositive={statsData.growth.isPositive}
+    />
+  </div>
+</div>
+
 
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
